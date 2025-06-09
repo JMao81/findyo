@@ -7,25 +7,20 @@ const VideoBackground: React.FC = () => {
     const [videoError, setVideoError] = useState(false);
 
     useEffect(() => {
-        console.log('🎯 VideoBackground component mounted');
         const video = videoRef.current;
         if (video) {
             // Handle video loading
             const handleLoadedData = () => {
-                console.log('🎥 Video loaded successfully');
                 setVideoLoaded(true);
             };
 
-            const handleError = (e: Event) => {
-                console.error('❌ Video failed to load:', e);
+            const handleError = () => {
                 setVideoError(true);
             };
 
             const handleCanPlay = () => {
-                console.log('🎬 Video can start playing');
                 // Try to play the video
-                video.play().catch(error => {
-                    console.warn('⚠️ Autoplay blocked by browser:', error);
+                video.play().catch(() => {
                     // Fallback: show animated background
                     setVideoError(true);
                 });
@@ -53,15 +48,7 @@ const VideoBackground: React.FC = () => {
 
     return (
         <div className="video-background">
-            {/* Debug info - remove in production */}
-            {process.env.NODE_ENV === 'development' && (
-                <div className="debug-info">
-                    <p>🎯 VideoBackground Component Loaded</p>
-                    <p>Video loaded: {videoLoaded ? '✅' : '⏳'}</p>
-                    <p>Video error: {videoError ? '❌' : '✅'}</p>
-                    <p>Video file path: /videos/bg.mp4</p>
-                </div>
-            )}
+
 
             {/* Video background - only show if loaded successfully */}
             {!videoError && (
@@ -75,12 +62,12 @@ const VideoBackground: React.FC = () => {
                     preload="metadata"
                     poster=""
                 >
-                    <source src="/videos/bg.mp4" type="video/mp4" />
+                    <source src={`${process.env.PUBLIC_URL}/videos/bg.mp4`} type="video/mp4" />
                     <source src="data:video/mp4;base64," type="video/mp4" />
                 </video>
             )}
             
-            {/* Always show animated background as fallback/overlay */}
+            {/* Original animated background as fallback/overlay */}
             <div className={`animated-background ${videoError || !videoLoaded ? 'primary' : 'secondary'}`}>
                 <div className="gradient-animation" />
             </div>
