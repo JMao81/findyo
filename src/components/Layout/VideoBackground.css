@@ -5,7 +5,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 0;
+    z-index: 0; /* Behind content but visible */
     overflow: hidden;
 }
 
@@ -16,10 +16,18 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.6;
+    opacity: 0;
     z-index: 1;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.8s ease-in-out;
     filter: saturate(1.1) brightness(1.05);
+}
+
+.background-video.loading {
+    opacity: 0;
+}
+
+.background-video.loaded {
+    opacity: 0.6;
 }
 
 .animated-background {
@@ -38,7 +46,19 @@
     );
     background-size: 400% 400%;
     animation: gradientFlow 12s ease-in-out infinite;
-    z-index: 0; /* Behind video */
+    z-index: 0; /* Behind video by default */
+    opacity: 0.8; /* More visible by default */
+    transition: opacity 0.8s ease-in-out, z-index 0.3s ease;
+}
+
+.animated-background.primary {
+    z-index: 1; /* In front when video fails */
+    opacity: 1; /* Full opacity when primary */
+}
+
+.animated-background.secondary {
+    z-index: 0; /* Behind video when video works */
+    opacity: 0.8; /* More visible when secondary */
 }
 
 .gradient-animation {
@@ -143,9 +163,27 @@
     }
 }
 
+/* Debug info for development */
+.debug-info {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    z-index: 9999;
+    font-family: monospace;
+}
+
+.debug-info p {
+    margin: 2px 0;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .background-video {
+    .background-video.loaded {
         opacity: 0.5;
     }
     
@@ -155,5 +193,12 @@
     
     .overlay {
         backdrop-filter: blur(0.5px);
+    }
+    
+    .debug-info {
+        top: 10px;
+        right: 10px;
+        font-size: 10px;
+        padding: 5px;
     }
 }

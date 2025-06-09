@@ -86,7 +86,8 @@ const MainLayout: React.FC = () => {
 
     return (
         <div className="main-layout">
-            {!showServices && !showTips && <VideoBackground />}
+            {/* Always show video background */}
+            <VideoBackground />
             <div className={`layout-container ${showServices || showTips ? 'show-services' : ''}`}>
                 <div className="chat-column">
                     <ChatInterface 

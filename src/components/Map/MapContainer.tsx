@@ -75,10 +75,15 @@ const MapContainer: React.FC = () => {
         console.error('Error loading Google Maps:', error);
     }, []);
 
-    // Environment variable handling - only use from build-time environment
+    // Environment variable handling - works with both local .env and GitHub Secrets
     const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-    if (!API_KEY || API_KEY === 'your_google_maps_api_key_here') {
+    // Debug logging in development
+    if (process.env.NODE_ENV === 'development') {
+        console.log('🗺️ Google Maps API Key status:', API_KEY ? 'Present' : 'Missing');
+    }
+
+    if (!API_KEY || API_KEY === 'your_google_maps_api_key_here' || API_KEY === 'your_new_api_key_here') {
         return (
             <div style={containerStyle} className="map-placeholder">
                 <div style={{
