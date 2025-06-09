@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/findyo/static/css/main.a23e4181.css",
+    "main.js": "/findyo/static/js/main.a3310d3e.js",
+    "index.html": "/findyo/index.html",
+    "main.a23e4181.css.map": "/findyo/static/css/main.a23e4181.css.map",
+    "main.a3310d3e.js.map": "/findyo/static/js/main.a3310d3e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a23e4181.css",
+    "static/js/main.a3310d3e.js"
+  ]
+}
