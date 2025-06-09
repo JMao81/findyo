@@ -75,10 +75,10 @@ const MapContainer: React.FC = () => {
         console.error('Error loading Google Maps:', error);
     }, []);
 
-    // Note: You'll need to add your Google Maps API key to an environment variable
-    const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || 'YOUR_API_KEY_HERE';
+    // Environment variable handling - only use from build-time environment
+    const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-    if (!API_KEY || API_KEY === 'YOUR_API_KEY_HERE') {
+    if (!API_KEY || API_KEY === 'your_google_maps_api_key_here') {
         return (
             <div style={containerStyle} className="map-placeholder">
                 <div style={{
