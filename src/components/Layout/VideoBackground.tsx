@@ -62,7 +62,7 @@ const VideoBackground: React.FC = () => {
                     preload="metadata"
                     poster=""
                 >
-                    <source src={`${process.env.PUBLIC_URL}/videos/bg.mp4`} type="video/mp4" />
+                    <source src={`https://videos.pexels.com/video-files/8731061/8731061-sd_640_360_25fps.mp4`} type="video/mp4" />
                     <source src="data:video/mp4;base64," type="video/mp4" />
                 </video>
             )}
